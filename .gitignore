@@ -114,3 +114,5 @@ dmypy.json
 .pyre/
 
 /A3C
+
+.vscode/

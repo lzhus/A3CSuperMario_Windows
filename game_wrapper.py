@@ -90,13 +90,13 @@ class Wrapper:
                         win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT,
                         1,655360,655360,300,None)
 
-        self.write_fd = msvcrt.open_osfhandle(self.pipe_out_s, os.O_WRONLY)
+        self.write_fd = msvcrt.open_osfhandle(int(self.pipe_out_s), os.O_WRONLY)
         self.pipe_out = open(self.write_fd, "w")
         self.pipe_in_s = win32pipe.CreateNamedPipe(self.pipe_in_file, win32pipe.PIPE_ACCESS_DUPLEX,
             win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT,
             1, 655360, 655360, 300, None)
             
-        self.read_fd = msvcrt.open_osfhandle(self.pipe_in_s, os.O_RDONLY)
+        self.read_fd = msvcrt.open_osfhandle(int(self.pipe_in_s), os.O_RDONLY)
         self.pipe_in = open(self.read_fd, "r")
         def listen_pipe_in():
             win32pipe.ConnectNamedPipe(self.pipe_in_s, None)

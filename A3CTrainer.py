@@ -20,12 +20,12 @@ import win32pipe, win32file, win32api, win32con, win32job
 
 COMPLEX_MOVEMENT = Wrapper.ACTION_MAP
 
-max_episode_length = 2100
+max_episode_length = 1000
 gamma = .99 # discount rate for advantage estimation and reward discounting
 s_size = 224 * 256 # Observations are greyscale frames of 250 * 250 * 1
 
 a_size = len(Wrapper.ACTION_MAP) # Agent can move Left, Right, or Fire
-load_model = False
+load_model = True
 model_path = './A3C/model'
 gif_path = './A3C/frames'
 
@@ -42,7 +42,7 @@ if not os.path.exists(gif_path):
 global_episodes = tf.Variable(0,dtype=tf.int32,name='global_episodes',trainable=False)
 trainer = tf.train.AdamOptimizer(learning_rate=1e-4)
 master_network = AC_Network(s_size,a_size,'global',None) # Generate global network
-num_workers = 3 #multiprocessing.cpu_count() # Set workers to number of available CPU threads, max value is multiprocessing.cpu_count()
+num_workers = 1 #multiprocessing.cpu_count() # Set workers to number of available CPU threads, max value is multiprocessing.cpu_count()
 workers = []
 # Create worker classes
 for i in range(num_workers):
