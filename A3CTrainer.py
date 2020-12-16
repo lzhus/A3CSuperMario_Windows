@@ -42,7 +42,7 @@ if not os.path.exists(gif_path):
 global_episodes = tf.Variable(0,dtype=tf.int32,name='global_episodes',trainable=False)
 trainer = tf.train.AdamOptimizer(learning_rate=1e-4)
 master_network = AC_Network(s_size,a_size,'global',None) # Generate global network
-num_workers = 1 #multiprocessing.cpu_count() # Set workers to number of available CPU threads, max value is multiprocessing.cpu_count()
+num_workers = 3 #multiprocessing.cpu_count() # Set workers to number of available CPU threads, max value is multiprocessing.cpu_count()
 workers = []
 # Create worker classes
 for i in range(num_workers):
